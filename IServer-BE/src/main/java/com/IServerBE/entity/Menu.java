@@ -1,4 +1,8 @@
 package com.IServerBE.entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,19 +17,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="meal")
-public class Meal {
+@Table(name="menu")
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
-    Float price;
-    Integer star;
-    Float calo;
-    Float discount;
-    Integer usage;
-    String image;
-    String description;
-//    Long menu_id;
-
 }
