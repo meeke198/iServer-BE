@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.sql.Date;
 import java.util.List;
 @Entity
@@ -14,19 +13,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-public class Meal {
+@javax.persistence.Table
+public class Table {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name;
-    Float price;
-    Integer star;
-    Float calo;
-    Float discount;
-    Integer usage;
-    String image;
-    String description;
-//    Long menu_id;
-
 }
