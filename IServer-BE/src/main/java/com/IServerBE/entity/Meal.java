@@ -9,5 +9,17 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 public class Meal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+    String name;
+    Float price;
+    Integer star;
+    Float calo;
+    Float discount;
+    Integer usage;
+    String image;
+    String description;
+//    Long menu_id;
 
 }
