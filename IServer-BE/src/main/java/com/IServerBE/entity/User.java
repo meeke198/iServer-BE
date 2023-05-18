@@ -68,7 +68,7 @@ public class User {
     @OneToMany(mappedBy = "message")
     private List<Message> messageList;
 }
-//    The associations between the entities are as follows:
+//
 
 //        One-to-Many relationship between User and RoomUser: Each User can be associated with multiple RoomUser records, representing the rooms they have joined.
 //        One-to-Many relationship between Room and RoomUser: Each Room can be associated with multiple RoomUser records, representing the users who have joined the room.
