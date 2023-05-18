@@ -62,10 +62,10 @@ public class User {
     private String rememberToken;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "room")
-    private List<Room> roomList;
+    @OneToMany(mappedBy = "user")
+    private List<RoomUser> RoomUserList;
     @JsonIgnore
-    @OneToMany(mappedBy = "message")
+    @OneToMany(mappedBy = "user")
     private List<Message> messageList;
 }
 //

@@ -1,4 +1,5 @@
 package com.IServerBE.entity;
+import com.IServerBE.entity.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -25,11 +26,11 @@ public class Room {
     private String name;
     private LocalDateTime createAt;
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<User> userList;
+    @OneToMany(mappedBy = "room")
+    private List<RoomUser> RoomUserList;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "message")
+    @OneToMany(mappedBy = "room")
     private List<Message> messageList;
 
 }
