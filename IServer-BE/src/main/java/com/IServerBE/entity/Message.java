@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -30,7 +31,7 @@ public class Message {
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name="room_id", referencedColumnName = "id")
     private Room room;
-    private LocalTime sentAt;
+    private LocalDateTime sentAt = LocalDateTime.now();
 
 }
 //    The associations between the entities are as follows:

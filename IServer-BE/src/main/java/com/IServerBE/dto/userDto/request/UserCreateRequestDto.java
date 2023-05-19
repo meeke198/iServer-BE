@@ -12,7 +12,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -20,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Validated
 //enable method-level validation in addition to the default bean validation
-public class userCreateRequestDto {
+public class UserCreateRequestDto {
     @NotNull
     private String fullName;
     @NotNull

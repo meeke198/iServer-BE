@@ -29,7 +29,7 @@ public class User {
     private String fullName;
 
     @Column(name = "create_at", length = 255, nullable = true)
-    private LocalDateTime createAt;
+    private LocalDateTime createAt = LocalDateTime.now();
 
     @NotBlank
     @Column(name = "username", length = 20, nullable = false)
