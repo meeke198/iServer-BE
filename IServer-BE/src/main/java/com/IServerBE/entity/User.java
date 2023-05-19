@@ -43,10 +43,6 @@ public class User {
     private String email;
 
 
-    @Column(name = "address", length = 255, nullable = true)
-    private String address;
-
-
     @Column(name = "phone", length = 12, nullable = true)
     private String phone;
 
@@ -55,8 +51,8 @@ public class User {
             columnDefinition = "text", nullable = true)
     private String avatar;
 
-    @Column(name = "active_status", nullable = false)
-    private Boolean activeStatus;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
 
     @Column(name = "remember_token", length = 255, nullable = true)
     private String rememberToken;
