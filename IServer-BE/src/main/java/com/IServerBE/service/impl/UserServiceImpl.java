@@ -1,4 +1,4 @@
 package com.IServerBE.service.impl;
 
-public class MealServiceImpl {
+public class UserServiceImpl {
 }
