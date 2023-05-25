@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Validated
 //enable method-level validation in addition to the default bean validation
-public class UserCreateRequestDto {
+public class UserRequestDto {
     @NotNull
     private String fullName;
     @NotNull
