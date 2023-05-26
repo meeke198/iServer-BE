@@ -20,13 +20,13 @@ public class UserConverter {
     public UserResponseDto entityToDto(User user){
         UserResponseDto userResponseDto = new UserResponseDto();
         BeanUtils.copyProperties(user, userResponseDto);
-        List<RoomUser> roomUserList = user.getRoomUserList();
-        userResponseDto.setUserName(user.getUserName());
-        if(roomUserList != null){
-            List<RoomUserResponseDto>  roomUserResponseDtos = new ArrayList<>();
-            roomUserList.forEach(roomUser -> roomUserResponseDtos.add(roomUserConverter.entityToDto(roomUser)));
-            userResponseDto.setRoomUserResponseDtoList(roomUserResponseDtos);
-        }
+//        List<RoomUser> roomUserList = user.getRoomUserList();
+//        userResponseDto.setUserName(user.getUserName());
+//        if(roomUserList != null){
+//            List<RoomUserResponseDto>  roomUserResponseDtos = new ArrayList<>();
+//            roomUserList.forEach(roomUser -> roomUserResponseDtos.add(roomUserConverter.entityToDto(roomUser)));
+//            userResponseDto.setRoomUserResponseDtoList(roomUserResponseDtos);
+//        }
         return userResponseDto;
     }
     public User dtoToEntity(UserRequestDto userRequestDto){

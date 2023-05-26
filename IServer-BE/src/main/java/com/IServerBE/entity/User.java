@@ -23,19 +23,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @NotBlank
-    @Column(name = "full_name", length = 255, nullable = false)
-    private String fullName;
-
-    @Column(name = "create_at", length = 255, nullable = true)
+    @Column(name = "create_at", length = 255, nullable = false)
     private LocalDateTime createAt = LocalDateTime.now();
-
     @NotBlank
     @Column(name = "username", length = 20, nullable = false)
     private String userName;
 
-    @Column(name = "password", length = 255, nullable = true)
+    @Column(name = "password", length = 255, nullable = false)
     private String password;
 
     @NotBlank
@@ -43,16 +37,12 @@ public class User {
     private String email;
 
 
-    @Column(name = "phone", length = 12, nullable = true)
-    private String phone;
-
-
     @Column(name = "avatar",
-            columnDefinition = "text", nullable = true)
+            columnDefinition = "text", nullable = false)
     private String avatar;
 
     @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
+    private Boolean isActive = true;
 
     @Column(name = "remember_token", length = 255, nullable = true)
     private String rememberToken;

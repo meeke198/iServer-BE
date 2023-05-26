@@ -24,11 +24,11 @@ public class Message {
 
     private String content;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="room_id", referencedColumnName = "id")
     private Room room;
     private LocalDateTime sentAt = LocalDateTime.now();
