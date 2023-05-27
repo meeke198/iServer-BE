@@ -25,14 +25,14 @@ public class User {
     private Long id;
     @Column(name = "create_at", length = 255, nullable = false)
     private LocalDateTime createAt = LocalDateTime.now();
-    @NotBlank
+//    @NotBlank
     @Column(name = "username", length = 20, nullable = false)
     private String userName;
 
     @Column(name = "password", length = 255, nullable = false)
     private String password;
 
-    @NotBlank
+//    @NotBlank
     @Column(name = "email", length = 255, nullable = false)
     private String email;
 
