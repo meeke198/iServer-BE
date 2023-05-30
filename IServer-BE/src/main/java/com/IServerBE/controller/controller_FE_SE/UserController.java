@@ -28,7 +28,7 @@ public class UserController {
             return new ResponseEntity<>("User doesn't exist", HttpStatus.BAD_REQUEST);
         }
     }
-    @GetMapping()
+    @GetMapping("")
     public ResponseEntity<?> getAllUsers(){
         List<UserResponseDto> userResponseDto = userService.getAllUsers();
         if(userResponseDto != null){
@@ -56,6 +56,4 @@ public class UserController {
         }
        return ResponseEntity.ok().body(userResponseDto);
     }
-
-
 }
