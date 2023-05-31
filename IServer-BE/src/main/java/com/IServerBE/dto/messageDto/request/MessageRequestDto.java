@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 public class MessageRequestDto {
     private String content;
     private Room room;
+    private User user;
     private LocalDateTime sentAt = LocalDateTime.now();
 
 }

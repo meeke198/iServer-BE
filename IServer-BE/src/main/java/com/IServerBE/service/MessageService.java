@@ -7,13 +7,17 @@ import com.IServerBE.dto.userDto.response.UserResponseDto;
 import org.springframework.data.domain.Page;
 
 import java.awt.print.Pageable;
+import java.util.List;
 import java.util.Optional;
 
 public interface MessageService {
     MessageResponseDto saveMessage(MessageRequestDto messageRequestDto);
-    Optional<MessageResponseDto> getMessage(Long id);
+    MessageResponseDto getMessage(Long id);
 
     void deleteMessageById(Long id);
 
-    Page<MessageResponseDto> getAllMessages(Pageable pageable);
+    List<MessageResponseDto> getAllMessages();
+    List<MessageResponseDto> getAllMessagesByRoomId();
+
+
 }
