@@ -16,7 +16,6 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class UserConverter {
-    private final UserConverter userConverter;
     public UserResponseDto entityToDto(User user){
         UserResponseDto userResponseDto = new UserResponseDto();
         BeanUtils.copyProperties(user, userResponseDto);
@@ -34,7 +33,7 @@ public class UserConverter {
 //        List<RoomUser> roomUserList = user.getRoomUserList();
 //        userResponseDto.setUserName(user.getUserName());
         List<UserResponseDto> userResponseDtoList = new ArrayList<>();
-        userList.forEach(user -> userResponseDtoList.add(userConverter.entityToDto(user)));
+        userList.forEach(user -> userResponseDtoList.add(entityToDto(user)));
 //        userResponseDto.setRoomUserResponseDtoList(roomUserResponseDtos);
 //
         return userResponseDtoList;

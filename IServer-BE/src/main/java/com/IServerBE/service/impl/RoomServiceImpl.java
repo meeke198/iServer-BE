@@ -29,7 +29,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public RoomResponseDto getRoom(Long id) {
+    public RoomResponseDto getRoom(Long id){
         Optional<Room> room = roomRepo.findById(id);
         if(room.isPresent()){
             return roomConverter.entityToDto(room.get());
@@ -40,7 +40,7 @@ public class RoomServiceImpl implements RoomService {
 
 
     @Override
-    public void deleteRoomById(Long id) {
+    public void deleteRoomById(Long id){
         Optional<Room> room = roomRepo.findById(id);
         if(room.isPresent()){
             roomRepo.deleteById(id);
@@ -59,4 +59,5 @@ public class RoomServiceImpl implements RoomService {
             throw new IllegalArgumentException("No rooms found");
         }
     }
+
 }

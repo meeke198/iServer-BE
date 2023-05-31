@@ -12,8 +12,6 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class RoomConverter {
-    private final RoomConverter roomConverter;
-
     public RoomResponseDto entityToDto(Room room) {
         RoomResponseDto roomResponseDto = new RoomResponseDto();
         BeanUtils.copyProperties(room, roomResponseDto);
@@ -22,7 +20,7 @@ public class RoomConverter {
 
     public List<RoomResponseDto> entitiesToDto(List<Room> roomList){
         List<RoomResponseDto> roomResponseDtoList = new ArrayList<>();
-        roomList.forEach(room -> roomResponseDtoList.add(roomConverter.entityToDto(room)));
+        roomList.forEach(room -> roomResponseDtoList.add(entityToDto(room)));
      return roomResponseDtoList;
     }
 }
