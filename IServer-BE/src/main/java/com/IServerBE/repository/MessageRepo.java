@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface MessageRepo extends JpaRepository<Message, Long> {
     @Query(value="SELECT m FROM Message m WHERE m.room.id = ?1")
-    List<MessageResponseDto> getAllMessageByRoomId(Long roomId);
+    List<Message> getAllMessageByRoomId(Long roomId);
 
 }

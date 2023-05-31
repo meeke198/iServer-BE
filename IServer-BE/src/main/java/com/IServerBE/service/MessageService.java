@@ -17,7 +17,7 @@ public interface MessageService {
     void deleteMessageById(Long id);
 
     List<MessageResponseDto> getAllMessages();
-    List<MessageResponseDto> getAllMessagesByRoomId();
+    List<MessageResponseDto> getAllMessagesByRoomId(Long roomId);
 
 
 }
