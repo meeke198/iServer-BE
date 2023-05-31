@@ -24,7 +24,7 @@ public class MessageController {
     private final MessageServiceImpl messageService;
     @GetMapping("/{id}")
     public ResponseEntity<?> getMessage(@PathVariable Long id){
-        Optional<MessageResponseDto> messageResponseDto = Optional.ofNullable(messageService.getMessage(id));
+        Optional<MessageResponseDto> messageResponseDto = Optional.of(messageService.getMessage(id));
         if(messageResponseDto.isPresent()){
             return ResponseEntity.ok().body(messageResponseDto.get());
         } else {
@@ -42,7 +42,7 @@ public class MessageController {
         }
     }
 
-    @GetMapping("/{roomId}")
+    @GetMapping("/groupMessages/{roomId}")
     public ResponseEntity<?> getAllMessagesByRoomId(@PathVariable Long roomId){
         Optional<List<MessageResponseDto>> messageResponseDtoList = Optional.of(messageService.getAllMessagesByRoomId(roomId));
         if(messageResponseDtoList.isPresent()){
@@ -64,7 +64,7 @@ public class MessageController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteMessage(@PathVariable Long id){
-        Optional<MessageResponseDto> messageResponseDto = Optional.ofNullable(messageService.getMessage(id));
+        Optional<MessageResponseDto> messageResponseDto = Optional.of(messageService.getMessage(id));
         if(messageResponseDto.isPresent()){
             return ResponseEntity.ok().body(messageResponseDto);
         } else {

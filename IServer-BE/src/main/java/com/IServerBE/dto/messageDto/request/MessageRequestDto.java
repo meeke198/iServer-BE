@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Validated
 public class MessageRequestDto {
     private String content;
     private Room room;
