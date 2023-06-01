@@ -50,28 +50,27 @@ public class UserController {
             userService.saveUser(userRequestDto);
             return new ResponseEntity<>("Sign out successfully", HttpStatus.OK);
     }
-    @PostMapping("/update")
-    public ResponseEntity<?> updateUser(@RequestBody UserRequestDto userRequestDto) {
-        Optional<UserResponseDto> searchUser = Optional.of(userService.findUserById(userRequestDto.getId()));
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody UserRequestDto userRequestDto, @PathVariable Long id) {
+        Optional<UserResponseDto> searchUser = Optional.of(userService.findUserById(id));
         if (searchUser.isPresent()) {
             userService.saveUser(userRequestDto);
             return ResponseEntity.ok().body(userRequestDto);
         }
         return new ResponseEntity<>("NOT FOUND", HttpStatus.NOT_FOUND);
     }
-    @PostMapping("/update-password")
-    public ResponseEntity<?> updatePassword(@RequestBody UserPasswordRequestDto userPasswordRequestDto, @RequestBody UserRequestDto userRequestDto) {
-        String newPassword = userPasswordRequestDto.getNewPassword();
-        String email = userRequestDto.getEmail();
-        Optional<UserResponseDto> userResponseDto = Optional.of(userService.findUserByEmail(email));
-
-            if (userResponseDto.isPresent()) {
-                userRequestDto.setPassword(newPassword);
-                userService.saveUser(userRequestDto);
-                return ResponseEntity.ok().body(userResponseDto.get());
-            } else {
-                return new ResponseEntity<>("User doesn't exist", HttpStatus.BAD_REQUEST);
-            }
+    @PutMapping("/password/{id}")
+    public ResponseEntity<?> updatePassword(@RequestBody UserRequestDto userRequestDto, @PathVariable Long id) {
+        Optional<UserResponseDto> searchUser = Optional.of(userService.findUserById(id));
+        if(searchUser.isPresent()){
+            String newPassword = userRequestDto.getNewPassword();
+            userRequestDto.setPassword(newPassword);
+            userService.saveUser(userRequestDto);
+            searchUser = Optional.of(userService.findUserById(id));
+            return ResponseEntity.ok().body(searchUser.get());
+        }else {
+            return new ResponseEntity<>("User doesn't exist", HttpStatus.BAD_REQUEST);
+        }
     }
         @PostMapping("/signup")
         public ResponseEntity<?> signUp(@RequestBody UserRequestDto userRequestDto){

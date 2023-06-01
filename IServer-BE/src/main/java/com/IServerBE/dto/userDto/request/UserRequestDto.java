@@ -29,6 +29,8 @@ public class UserRequestDto {
 //    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Minimum 8 characters, contains at least 1 uppercase letter, and 1 special character")
     private String password;
     @Nullable
+    private String newPassword;
+    @Nullable
     private String avatar;
     @Nullable
     private Boolean isOnline = false;
