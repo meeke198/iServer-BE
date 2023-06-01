@@ -18,24 +18,15 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(value = "*")
+@CrossOrigin(value = "*", maxAge = 3600)
 @RequestMapping("/messages")
 public class MessageController {
     private final MessageServiceImpl messageService;
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getMessage(@PathVariable Long id){
-        Optional<MessageResponseDto> messageResponseDto = Optional.of(messageService.getMessage(id));
-        if(messageResponseDto.isPresent()){
-            return ResponseEntity.ok().body(messageResponseDto.get());
-        } else {
-            return new ResponseEntity<>("Message doesn't exist", HttpStatus.BAD_REQUEST);
-        }
-    }
 
     @GetMapping("")
-    public ResponseEntity<?> getAllMessages(){
-        Optional<List<MessageResponseDto>> messageResponseDtoList = Optional.of(messageService.getAllMessages());
-        if(messageResponseDtoList.isPresent()){
+    public ResponseEntity<?> getAllMessages() {
+        List<MessageResponseDto> messageResponseDtoList = messageService.getAllMessages();
+        if (!messageResponseDtoList.isEmpty()) {
             return ResponseEntity.ok().body(messageResponseDtoList);
         } else {
             return new ResponseEntity<>("No messages found", HttpStatus.BAD_REQUEST);
@@ -43,34 +34,23 @@ public class MessageController {
     }
 
     @GetMapping("/groupMessages/{roomId}")
-    public ResponseEntity<?> getAllMessagesByRoomId(@PathVariable Long roomId){
+    public ResponseEntity<?> getAllMessagesByRoomId(@PathVariable Long roomId) {
         Optional<List<MessageResponseDto>> messageResponseDtoList = Optional.of(messageService.getAllMessagesByRoomId(roomId));
-        if(messageResponseDtoList.isPresent()){
+        if (messageResponseDtoList.isPresent()) {
             return ResponseEntity.ok().body(messageResponseDtoList);
-        } else{
+        } else {
             return new ResponseEntity<>("No messages found", HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("")
-    public ResponseEntity<?> saveMessage(@RequestBody MessageRequestDto messageRequestDto){
+    public ResponseEntity<?> saveMessage(@RequestBody MessageRequestDto messageRequestDto) {
         Optional<MessageResponseDto> messageResponseDto = Optional.of(messageService.saveMessage(messageRequestDto));
-        if(messageResponseDto.isPresent()){
+        if (messageResponseDto.isPresent()) {
             return ResponseEntity.ok().body(messageResponseDto);
         } else {
             return new ResponseEntity<>("Couldn't save message", HttpStatus.BAD_REQUEST);
         }
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteMessage(@PathVariable Long id){
-        Optional<MessageResponseDto> messageResponseDto = Optional.of(messageService.getMessage(id));
-        if(messageResponseDto.isPresent()){
-            return ResponseEntity.ok().body(messageResponseDto);
-        } else {
-            return new ResponseEntity<>("Message doesn't exist", HttpStatus.BAD_REQUEST);
-        }
-    }
 }
-
 

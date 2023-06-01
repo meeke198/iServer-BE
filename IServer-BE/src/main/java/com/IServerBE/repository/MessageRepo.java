@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MessageRepo extends JpaRepository<Message, Long> {
     @Query(value="SELECT m FROM Message m WHERE m.room.id = ?1")
-    List<Message> getAllMessageByRoomId(Long roomId);
+    Optional<List<Message>> getAllMessageByRoomId(Long roomId);
 
 }

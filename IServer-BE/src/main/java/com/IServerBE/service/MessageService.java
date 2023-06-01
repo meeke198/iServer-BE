@@ -12,9 +12,8 @@ import java.util.Optional;
 
 public interface MessageService {
     MessageResponseDto saveMessage(MessageRequestDto messageRequestDto);
-    MessageResponseDto getMessage(Long id);
 
-    void deleteMessageById(Long id);
+//    void deleteMessageById(Long id);
 
     List<MessageResponseDto> getAllMessages();
     List<MessageResponseDto> getAllMessagesByRoomId(Long roomId);

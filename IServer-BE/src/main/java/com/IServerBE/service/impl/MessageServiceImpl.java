@@ -26,33 +26,33 @@ public class MessageServiceImpl implements MessageService {
         return messageConverter.entityToDto(message);
     }
 
-    @Override
-    public MessageResponseDto getMessage(Long id) {
-        MessageResponseDto messageResponseDto = new MessageResponseDto();
-        Optional<Message> message = messageRepo.findById(id);
-        if(message.isPresent()){
-            return messageConverter.entityToDto(message.get());
-        } else {
-          throw new IllegalArgumentException("Couldn't find any message with id " + id);
-        }
-    }
+//    @Override
+//    public MessageResponseDto getMessage(Long id) {
+//        MessageResponseDto messageResponseDto = new MessageResponseDto();
+//        Optional<Message> message = messageRepo.findById(id);
+//        if(message.isPresent()){
+//            return messageConverter.entityToDto(message.get());
+//        } else {
+//          throw new IllegalArgumentException("Couldn't find any message with id " + id);
+//        }
+//    }
 
-    @Override
-    public void deleteMessageById(Long id) {
-        Optional<Message> message = messageRepo.findById(id);
-        if(message.isPresent()){
-            messageRepo.deleteById(id);
-        } else {
-            throw new IllegalArgumentException("Couldn't find any message with id " + id);
-        }
-    }
+//    @Override
+//    public void deleteMessageById(Long id) {
+//        Optional<Message> message = messageRepo.findById(id);
+//        if(message.isPresent()){
+//            messageRepo.deleteById(id);
+//        } else {
+//            throw new IllegalArgumentException("Couldn't find any message with id " + id);
+//        }
+//    }
 
     @Override
     public List<MessageResponseDto> getAllMessages() {
-        List<MessageResponseDto> messageResponseDtos = new ArrayList<>();
-        Optional<List<Message>> messageList = Optional.of(messageRepo.findAll());
-        if(messageList.isPresent()){
-            return messageConverter.entitesToDtos(messageList.get());
+        List<Message> messageList = messageRepo.findAll();
+        if(!messageList.isEmpty()){
+            List<MessageResponseDto> messageResponseDtoList = messageConverter.entitesToDtos(messageList);
+            return messageResponseDtoList;
         } else {
             throw new IllegalArgumentException("No message found");
         }
@@ -60,10 +60,10 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<MessageResponseDto> getAllMessagesByRoomId(Long roomId) {
-        List<MessageResponseDto> messageResponseDtoList = new ArrayList<>();
-        Optional<List<Message>> messageList = Optional.of(messageRepo.getAllMessageByRoomId(roomId));
+        Optional<List<Message>> messageList = messageRepo.getAllMessageByRoomId(roomId);
         if(messageList.isPresent()){
-            return messageConverter.entitesToDtos(messageList.get());
+            List<MessageResponseDto> messageResponseDtoList = messageConverter.entitesToDtos(messageList.get());
+            return messageResponseDtoList;
         } else {
             throw new IllegalArgumentException("No message found");
         }
