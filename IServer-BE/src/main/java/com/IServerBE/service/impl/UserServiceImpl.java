@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 //import org.springframework.security.crypto.bcrypt.BCrypt;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,58 +26,86 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final UserConverter userConverter;
 //    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public UserResponseDto saveUser(UserRequestDto userRequestDto) {
-        Optional<User> userEmail = userRepo.findUserByEmail(userRequestDto.getEmail());
-        Optional<User> userName = userRepo.findUserByUserName(userRequestDto.getUserName());
-        UserResponseDto userResponseDto = new UserResponseDto();
-        if (userEmail.isPresent() && userName.isPresent()) {
-            throw new IllegalArgumentException("email & username links with an account, please log in");
-        } else if (!userEmail.isPresent() && userName.isPresent()) {
-            throw new IllegalArgumentException("Username is already taken");
-        } else if (userEmail.isPresent() && !userName.isPresent()) {
-            throw new IllegalArgumentException("Email links with an account, please log in");
-        } else {
-            User newUser = userConverter.dtoToEntity(userRequestDto);
-//            String encodedPassword = bCryptPasswordEncoder.encode(userRequestDto.getPassword());
-            String encodedPassword = "letImagineThisIsAn$%BcryptEncodedPassword@#$%%";
-            newUser.setPassword(encodedPassword);
-            userRepo.save(newUser);
-            log.info("Saving new user to database {}", newUser.getUserName());
-              return userConverter.entityToDto(newUser);
-        }
+//        Optional<User> user = userRepo.findUserByEmail(userRequestDto.getEmail());
+//        if(user.isPresent()){
+            User currentUser = userConverter.dtoToEntity(userRequestDto);
+            userRepo.save(currentUser);
+            log.info("Saving new user to database {}", currentUser.getUserName());
+            return userConverter.entityToDto(currentUser);
+//        } else {
+//            throw new IllegalArgumentException("User doesn't exist");
+//        }
     }
 
     @Override
     public UserResponseDto findUserById(Long id){
         Optional<User> user = userRepo.findById(id);
-        if (user == null) {
-            throw new IllegalArgumentException("User doesn't exist");
-        }else {
+        if (user.isPresent()) {
             return userConverter.entityToDto(user.get());
+        }
+        return null;
+//        }else {
+//           throw new IllegalArgumentException("User doesn't exist");
+//        }
+    }
+
+    @Override
+    public UserResponseDto findUserByEmail(String email){
+        Optional<User> user = userRepo.findUserByEmail(email);
+        if (user.isPresent()) {
+            return userConverter.entityToDto(user.get());
+        }else {
+            return null;
+        }
+    }
+    @Override
+    public UserResponseDto findUserByUserName(String userName){
+        Optional<User> user = userRepo.findUserByUserName(userName);
+        if (user.isPresent()) {
+            return userConverter.entityToDto(user.get());
+        }else {
+            return null;
         }
     }
 
     @Override
     public UserResponseDto deleteUserStatusById(Long id) {
         Optional<User> user = userRepo.findById(id);
-        if (user == null) {
-            throw new IllegalArgumentException("User doesn't exist");
-        }else {
+        if (user.isPresent()) {
             user.get().setIsActive(false);
+            userRepo.save(user.get());
             return userConverter.entityToDto(user.get());
+        }
+        else {
+            throw new IllegalArgumentException("User doesn't exist");
         }
 
     }
 
     @Override
-    public List<UserResponseDto> getAllUsers() {
-        Optional<List<User>> userList = Optional.of(userRepo.findAll());
+    public List<UserResponseDto> getAllActiveUsers() {
+        Optional<List<User>> userList = userRepo.findAllActiveUsers();
         if(userList.isPresent()){
             List<UserResponseDto> userResponseDtoList = userConverter.entitiesToDtos(userList.get());
             return userResponseDtoList;
         }else{
             throw new IllegalArgumentException("No users found");
+        }
+    }
+
+    @Override
+    public UserResponseDto getUserByUserNameAndPassword(String email, String password) {
+        Optional<User> user = userRepo.findUserByUserNameAndPassword(email, password);
+        if(user.isPresent()){
+//            User currentUser = user.orElseThrow(() -> new NotFoundException("User not found"));
+//            currentUser.setIsOnline(true);
+            userRepo.save(user.get());
+            return userConverter.entityToDto(user.get());
+        } else{
+           return null;
         }
     }
 }

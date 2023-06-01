@@ -23,10 +23,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "create_at", length = 255, nullable = false)
-    private LocalDateTime createAt = LocalDateTime.now();
+//    @Column(name = "create_at", length = 255)
+//    private LocalDateTime createAt = LocalDateTime.now();
 //    @NotBlank
-    @Column(name = "username", length = 20, nullable = false)
+    @Column(name = "username", length = 20,nullable = false)
     private String userName;
 
     @Column(name = "password", length = 255, nullable = false)
@@ -37,15 +37,16 @@ public class User {
     private String email;
 
 
-    @Column(name = "avatar",
-            columnDefinition = "text", nullable = false)
+    @Column(name = "avatar", columnDefinition = "text", nullable = true)
     private String avatar;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active", nullable = true)
     private Boolean isActive = true;
+    @Column(name = "is_online", nullable = true)
+    private Boolean isOnline = false;
 
-    @Column(name = "remember_token", length = 255, nullable = true)
-    private String rememberToken;
+//    @Column(name = "remember_token", length = 255, nullable = true)
+//    private String rememberToken;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
