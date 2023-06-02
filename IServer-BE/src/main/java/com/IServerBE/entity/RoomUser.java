@@ -19,11 +19,11 @@ public class RoomUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     private Room room;
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

@@ -12,7 +12,8 @@ import java.util.Optional;
 
 @Repository
 public interface MessageRepo extends JpaRepository<Message, Long> {
-    @Query(value="SELECT m FROM Message m WHERE m.room.id = ?1")
-    Optional<List<Message>> getAllMessageByRoomId(Long roomId);
+//    @Query(value="SELECT m FROM Message m WHERE m.room.id = ?1")
+//    Optional<List<Message>> getAllMessageByRoomId(Long roomId);
 
+    List<Message> getMessagesByRoomId(Long roomId);
 }

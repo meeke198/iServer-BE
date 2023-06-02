@@ -23,11 +23,11 @@ public class Message {
     private Long id;
 
     private String content;
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="room_id", referencedColumnName = "id")
     private Room room;

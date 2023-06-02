@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,33 +27,13 @@ public class MessageServiceImpl implements MessageService {
         return messageConverter.entityToDto(message);
     }
 
-//    @Override
-//    public MessageResponseDto getMessage(Long id) {
-//        MessageResponseDto messageResponseDto = new MessageResponseDto();
-//        Optional<Message> message = messageRepo.findById(id);
-//        if(message.isPresent()){
-//            return messageConverter.entityToDto(message.get());
-//        } else {
-//          throw new IllegalArgumentException("Couldn't find any message with id " + id);
-//        }
-//    }
-
-//    @Override
-//    public void deleteMessageById(Long id) {
-//        Optional<Message> message = messageRepo.findById(id);
-//        if(message.isPresent()){
-//            messageRepo.deleteById(id);
-//        } else {
-//            throw new IllegalArgumentException("Couldn't find any message with id " + id);
-//        }
-//    }
 
     @Override
     public List<MessageResponseDto> getAllMessages() {
         List<Message> messageList = messageRepo.findAll();
+
         if(!messageList.isEmpty()){
-            List<MessageResponseDto> messageResponseDtoList = messageConverter.entitesToDtos(messageList);
-            return messageResponseDtoList;
+            return messageList.stream().map(messageConverter::entityToDto).collect(Collectors.toList());
         } else {
             throw new IllegalArgumentException("No message found");
         }
@@ -60,13 +41,11 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<MessageResponseDto> getAllMessagesByRoomId(Long roomId) {
-        Optional<List<Message>> messageList = messageRepo.getAllMessageByRoomId(roomId);
+        Optional<List<Message>> messageList = Optional.ofNullable(messageRepo.getMessagesByRoomId(roomId));
         if(messageList.isPresent()){
-            List<MessageResponseDto> messageResponseDtoList = messageConverter.entitesToDtos(messageList.get());
-            return messageResponseDtoList;
+            return messageList.get().stream().map(messageConverter::entityToDto).collect(Collectors.toList());
         } else {
             throw new IllegalArgumentException("No message found");
         }
-
     }
 }

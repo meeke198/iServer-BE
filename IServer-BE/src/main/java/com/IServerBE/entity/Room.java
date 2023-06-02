@@ -25,11 +25,11 @@ public class Room {
 
     private String name;
     private LocalDateTime createAt = LocalDateTime.now();
-    @JsonIgnore
+
     @OneToMany(mappedBy = "room")
     private List<RoomUser> RoomUserList;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "room")
     private List<Message> messageList;
 

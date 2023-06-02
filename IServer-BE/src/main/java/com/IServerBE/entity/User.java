@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -40,6 +41,9 @@ public class User {
     @Column(name = "avatar", columnDefinition = "text", nullable = true)
     private String avatar;
 
+    @Column(name="create_at")
+    private Date date;
+
     @Column(name = "is_active", nullable = true)
     private Boolean isActive = true;
     @Column(name = "is_online", nullable = true)
@@ -48,10 +52,10 @@ public class User {
 //    @Column(name = "remember_token", length = 255, nullable = true)
 //    private String rememberToken;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "user")
     private List<RoomUser> RoomUserList;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "user")
     private List<Message> messageList;
 }

@@ -12,12 +12,18 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 public class UserConverter {
+    private final RoomUserConverter roomUserConverter;
     public UserResponseDto entityToDto(User user){
         UserResponseDto userResponseDto = new UserResponseDto();
+        List<RoomUser> roomUsers = user.getRoomUserList();
+
+//        userResponseDto.setRoomUserResponseDtoList(roomUsers.stream()
+//                .map(roomUserConverter::entityToDto).collect(Collectors.toList()));
         BeanUtils.copyProperties(user, userResponseDto);
         return userResponseDto;
     }

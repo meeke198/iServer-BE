@@ -14,9 +14,13 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class MessageConverter {
+    private final UserConverter userConverter;
+    private final RoomConverter roomConverter;
     public MessageResponseDto entityToDto(Message message) {
         MessageResponseDto messageResponseDto = new MessageResponseDto();
         BeanUtils.copyProperties(message, messageResponseDto);
+//        messageResponseDto.setRoomResponseDto(roomConverter.entityToDto(message.getRoom()));
+        messageResponseDto.setUserResponseDto(userConverter.entityToDto(message.getUser()));
         return messageResponseDto;
     }
 
@@ -24,11 +28,5 @@ public class MessageConverter {
         Message message = new Message();
         BeanUtils.copyProperties(messageRequestDto, message);
         return message;
-    }
-
-    public List<MessageResponseDto> entitesToDtos(List<Message> messageList) {
-        List<MessageResponseDto> messageResponseDtoList = new ArrayList<>();
-        messageList.forEach(message -> messageResponseDtoList.add(entityToDto(message)));
-        return messageResponseDtoList;
     }
 }
