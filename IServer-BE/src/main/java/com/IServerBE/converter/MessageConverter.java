@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MessageConverter {
     private final UserConverter userConverter;
-    private final RoomConverter roomConverter;
     public MessageResponseDto entityToDto(Message message) {
         MessageResponseDto messageResponseDto = new MessageResponseDto();
         BeanUtils.copyProperties(message, messageResponseDto);

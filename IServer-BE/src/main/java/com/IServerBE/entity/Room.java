@@ -29,7 +29,6 @@ public class Room {
     @OneToMany(mappedBy = "room")
     private List<RoomUser> RoomUserList;
 
-
     @OneToMany(mappedBy = "room")
     private List<Message> messageList;
 

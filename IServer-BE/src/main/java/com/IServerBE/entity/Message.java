@@ -21,7 +21,6 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

@@ -29,8 +29,7 @@ public class MessageController {
         if (!messageResponseDtoList.isEmpty()) {
             return ResponseEntity.ok().body(messageResponseDtoList);
         } else {
-//            return new ResponseEntity<>("No messages found", HttpStatus.BAD_REQUEST);
-                return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
     }
 

@@ -24,16 +24,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-//    @Column(name = "create_at", length = 255)
-//    private LocalDateTime createAt = LocalDateTime.now();
-//    @NotBlank
     @Column(name = "username", length = 20,nullable = false)
     private String userName;
 
     @Column(name = "password", length = 255, nullable = false)
     private String password;
 
-//    @NotBlank
     @Column(name = "email", length = 255, nullable = false)
     private String email;
 
@@ -41,17 +37,10 @@ public class User {
     @Column(name = "avatar", columnDefinition = "text", nullable = true)
     private String avatar;
 
-    @Column(name="create_at")
-    private Date date;
-
     @Column(name = "is_active", nullable = true)
     private Boolean isActive = true;
     @Column(name = "is_online", nullable = true)
     private Boolean isOnline = false;
-
-//    @Column(name = "remember_token", length = 255, nullable = true)
-//    private String rememberToken;
-
 
     @OneToMany(mappedBy = "user")
     private List<RoomUser> RoomUserList;

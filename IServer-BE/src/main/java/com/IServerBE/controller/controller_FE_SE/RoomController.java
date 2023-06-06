@@ -47,5 +47,4 @@ public class RoomController {
     public void deleteRoom(@PathVariable Long id){
         roomService.deleteRoomById(id);
     }
-
 }

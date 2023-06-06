@@ -12,7 +12,6 @@ import java.util.Optional;
 
 public interface MessageService {
     MessageResponseDto saveMessage(MessageRequestDto messageRequestDto);
-
     List<MessageResponseDto> getAllMessages();
     List<MessageResponseDto> getAllMessagesByRoomId(Long roomId);
 
