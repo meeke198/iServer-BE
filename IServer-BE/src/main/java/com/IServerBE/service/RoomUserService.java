@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RoomUserService {
-    RoomUserRequestDto saveRoom(RoomUserRequestDto roomUserRequestDto);
+    RoomUserRequestDto saveRoomUser(RoomUserRequestDto roomUserRequestDto);
     RoomUserRequestDto getRoomUser(Long id);
 
     void deleteRoomUserById(Long id);
 
-    List<RoomUserRequestDto> getAllRoomUsers(Pageable pageable);
+    List<RoomUserRequestDto> getAllRoomUsers();
 
 }

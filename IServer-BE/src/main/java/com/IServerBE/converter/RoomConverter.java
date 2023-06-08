@@ -1,5 +1,6 @@
 package com.IServerBE.converter;
 
+import com.IServerBE.dto.roomDto.RoomRequestDto;
 import com.IServerBE.dto.roomDto.RoomResponseDto;
 import com.IServerBE.entity.Room;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,11 @@ public class RoomConverter {
         RoomResponseDto roomResponseDto = new RoomResponseDto();
         BeanUtils.copyProperties(room, roomResponseDto);
         return roomResponseDto;
+    }
+    public Room dtoToEntity(RoomRequestDto roomRequestDto) {
+        Room room = new Room();
+        BeanUtils.copyProperties(roomRequestDto, room);
+        return room;
     }
 
     public List<RoomResponseDto> entitiesToDto(List<Room> roomList){

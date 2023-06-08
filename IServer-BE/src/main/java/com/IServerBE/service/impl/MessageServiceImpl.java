@@ -41,7 +41,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<MessageResponseDto> getAllMessagesByRoomId(Long roomId) {
-        Optional<List<Message>> messageList = Optional.ofNullable(messageRepo.getMessagesByRoomId(roomId));
+        Optional<List<Message>> messageList = Optional.of(messageRepo.getMessagesByRoomId(roomId));
         if(messageList.isPresent()){
             return messageList.get().stream().map(messageConverter::entityToDto).collect(Collectors.toList());
         } else {
