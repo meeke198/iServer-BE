@@ -24,7 +24,7 @@ public class Room {
     private Long id;
 
     private String name;
-    private LocalDateTime createAt = LocalDateTime.now();
+//    private LocalDateTime createAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "room")
     private List<RoomUser> RoomUserList;

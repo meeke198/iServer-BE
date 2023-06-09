@@ -20,8 +20,8 @@ public class RoomRequestDto {
     private Long id;
     @Nullable
     private String name;
-    @Nullable
-    private LocalDateTime createAt = LocalDateTime.now();
+//    @Nullable
+//    private LocalDateTime createAt = LocalDateTime.now();
     @Nullable
     private List<RoomUser> RoomUserList;
     @Nullable

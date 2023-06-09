@@ -1,16 +1,11 @@
 package com.IServerBE.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.validation.constraints.NotBlank;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -42,11 +37,11 @@ public class User {
     @Column(name = "is_online", nullable = true)
     private Boolean isOnline = false;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<RoomUser> RoomUserList;
 
-    @OneToMany(mappedBy = "user")
-    private List<Message> messageList;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Message> messageSents;
 }
 //
 
