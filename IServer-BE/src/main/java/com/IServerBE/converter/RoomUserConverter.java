@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class RoomUserConverter {
-    private final UserConverter userConverter;
+//    private final UserConverter userConverter;
     private final RoomConverter roomConverter;
 
     public RoomUserResponseDto entityToDto(RoomUser roomUser){
         RoomUserResponseDto roomUserResponseDto = new RoomUserResponseDto();
         BeanUtils.copyProperties(roomUser, roomUserResponseDto);
-        roomUserResponseDto.setUserResponseDto(userConverter.entityToDto(roomUser.getUser()));
+//        roomUserResponseDto.setUserResponseDto(userConverter.entityToDto(roomUser.getUser()));
         roomUserResponseDto.setRoomResponseDto(roomConverter.entityToDto(roomUser.getRoom()));
         return roomUserResponseDto;
     }
@@ -24,7 +24,7 @@ public class RoomUserConverter {
     public RoomUser dtoToEntity(RoomUserRequestDto roomUserRequestDto){
         RoomUser roomUser = new RoomUser();
         BeanUtils.copyProperties(roomUserRequestDto, roomUser);
-        roomUser.setUser(userConverter.dtoToEntity(roomUserRequestDto.getUserRequestDto()));
+//        roomUser.setUser(userConverter.dtoToEntity(roomUserRequestDto.getUserRequestDto()));
         roomUser.setRoom(roomConverter.dtoToEntity(roomUserRequestDto.getRoomRequestDto()));
         return roomUser;
     }
