@@ -33,11 +33,11 @@ public class UserConverter {
         userResponseDto.setRoomUserResponseDtoList(roomUserResponseDtoList);
         return userResponseDto;
     }
-    public List<UserResponseDto> entitiesToDtos(List<User> userList){
-        List<UserResponseDto> userResponseDtoList = new ArrayList<>();
-        userList.forEach(user -> userResponseDtoList.add(entityToDto(user)));
-        return userResponseDtoList;
-    }
+//    public List<UserResponseDto> entitiesToDtos(List<User> userList){
+//        List<UserResponseDto> userResponseDtoList = new ArrayList<>();
+//        userList.forEach(user -> userResponseDtoList.add(entityToDto(user)));
+//        return userResponseDtoList;
+//    }
     public User dtoToEntity(UserRequestDto userRequestDto){
         User user = new User();
         BeanUtils.copyProperties(userRequestDto, user);

@@ -2,6 +2,8 @@ package com.IServerBE.converter;
 
 import com.IServerBE.dto.messageDto.request.MessageRequestDto;
 import com.IServerBE.dto.messageDto.response.MessageResponseDto;
+import com.IServerBE.dto.roomDto.RoomResponseDto;
+import com.IServerBE.dto.userDto.response.UserResponseDto;
 import com.IServerBE.entity.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -15,11 +17,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MessageConverter {
     private final UserConverter userConverter;
+    private final RoomConverter roomConverter;
+
     public MessageResponseDto entityToDto(Message message) {
         MessageResponseDto messageResponseDto = new MessageResponseDto();
         BeanUtils.copyProperties(message, messageResponseDto);
-//        messageResponseDto.setRoomResponseDto(roomConverter.entityToDto(message.getRoom()));
-        messageResponseDto.setUserResponseDto(userConverter.entityToDto(message.getUser()));
+        UserResponseDto userResponseDto = userConverter.entityToDto(message.getUser());
+        messageResponseDto.setUserResponseDto(userResponseDto);
+        RoomResponseDto roomResponseDto = roomConverter.entityToDto(message.getRoom());
+        messageResponseDto.setRoomResponseDto(roomResponseDto);
         return messageResponseDto;
     }
 

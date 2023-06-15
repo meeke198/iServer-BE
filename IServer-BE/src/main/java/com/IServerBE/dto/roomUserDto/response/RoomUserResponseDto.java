@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class RoomUserResponseDto {
     private String name;
     private RoomResponseDto roomResponseDto;
-//    private UserResponseDto userResponseDto;
+    private UserResponseDto userResponseDto;
 }
