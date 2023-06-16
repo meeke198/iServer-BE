@@ -17,14 +17,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MessageConverter {
     private final UserConverter userConverter;
+    private final RoomConverter roomConverter;
 
     public MessageResponseDto entityToDto(Message message) {
         MessageResponseDto messageResponseDto = new MessageResponseDto();
         BeanUtils.copyProperties(message, messageResponseDto);
         UserResponseDto userResponseDto = userConverter.entityToDto(message.getUser());
         messageResponseDto.setUserResponseDto(userResponseDto);
-//        RoomResponseDto roomResponseDto = roomConverter.entityToDto(message.getRoom());
-//        messageResponseDto.setRoomResponseDto(roomResponseDto);
+        RoomResponseDto roomResponseDto = roomConverter.entityToDto(message.getRoom());
+        messageResponseDto.setRoomResponseDto(roomResponseDto);
         return messageResponseDto;
     }
 

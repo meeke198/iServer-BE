@@ -20,7 +20,9 @@ import java.time.LocalDateTime;
 @Validated
 public class MessageRequestDto {
     private String content;
+//    @Nullable
     private Room room;
+    @Nullable
     private User user;
     private LocalDateTime sentAt = LocalDateTime.now();
 

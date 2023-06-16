@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MessageResponseDto {
     private String content;
-//    private RoomResponseDto roomResponseDto;
+    private RoomResponseDto roomResponseDto;
     private UserResponseDto userResponseDto;
     private LocalDateTime sentAt;
 }

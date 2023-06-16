@@ -48,4 +48,14 @@ public class MessageServiceImpl implements MessageService {
             throw new IllegalArgumentException("No message found");
         }
     }
+
+    @Override
+    public List<MessageResponseDto> getAllMessagesByUserId(Long userId) {
+        Optional<List<Message>> messageList = Optional.of(messageRepo.getMessagesByUserId(userId));
+        if(messageList.isPresent()){
+            return messageList.get().stream().map(messageConverter::entityToDto).collect(Collectors.toList());
+        } else {
+            throw new IllegalArgumentException("No message found");
+        }
+    }
 }

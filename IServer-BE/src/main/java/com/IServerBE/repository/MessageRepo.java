@@ -16,4 +16,7 @@ public interface MessageRepo extends JpaRepository<Message, Long> {
 //    Optional<List<Message>> getAllMessageByRoomId(Long roomId);
 
     List<Message> getMessagesByRoomId(Long roomId);
+    @Query(value="SELECT m FROM Message m WHERE m.user.id = ?1")
+    List<Message> getMessagesByUserId(Long userId);
+
 }

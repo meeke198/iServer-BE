@@ -44,6 +44,16 @@ public class MessageController {
         }
     }
 
+    @GetMapping("/sentMessages/{userId}")
+    public ResponseEntity<?> getAllMessagesByUserId(@PathVariable Long userId) {
+        Optional<List<MessageResponseDto>> messageResponseDtoList = Optional.of(messageService.getAllMessagesByUserId(userId));
+        if (messageResponseDtoList.isPresent()) {
+            return ResponseEntity.ok().body(messageResponseDtoList);
+        } else {
+            return new ResponseEntity<>("No messages found", HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("")
     public ResponseEntity<?> saveMessage(@RequestBody MessageRequestDto messageRequestDto) {
         Optional<MessageResponseDto> messageResponseDto = Optional.of(messageService.saveMessage(messageRequestDto));
