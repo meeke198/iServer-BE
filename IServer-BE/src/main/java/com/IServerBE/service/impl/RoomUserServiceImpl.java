@@ -2,6 +2,7 @@ package com.IServerBE.service.impl;
 import com.IServerBE.converter.RoomUserConverter;
 import com.IServerBE.dto.roomUserDto.request.RoomUserRequestDto;
 import com.IServerBE.dto.roomUserDto.response.RoomUserResponseDto;
+import com.IServerBE.dto.userDto.response.UserResponseDto;
 import com.IServerBE.entity.RoomUser;
 import com.IServerBE.repository.RoomUserRepo;
 import com.IServerBE.service.RoomUserService;
@@ -25,7 +26,7 @@ public class RoomUserServiceImpl implements RoomUserService {
     public RoomUserResponseDto saveRoomUser(RoomUserRequestDto roomUserRequestDto) {
        RoomUser roomUser = roomUserConverter.dtoToEntity(roomUserRequestDto);
        roomUserRepo.save(roomUser);
-        log.info("Saving new roomUser to database {}", roomUser.getName());
+        log.info("Saving new roomUser to database");
         RoomUserResponseDto roomUserResponseDto = roomUserConverter.entityToDto(roomUser);
         return roomUserResponseDto;
     }
@@ -54,6 +55,26 @@ public class RoomUserServiceImpl implements RoomUserService {
     @Override
     public List<RoomUserResponseDto> getAllRoomUsers() {
         List<RoomUser> roomUserList = roomUserRepo.findAll();
+        if(!roomUserList.isEmpty()){
+            return roomUserList.stream().map(roomUserConverter::entityToDto).collect(Collectors.toList());
+        } else {
+            throw new IllegalArgumentException("No roomUser found");
+        }
+    }
+
+    @Override
+    public List<RoomUserResponseDto> getRoomUserByRoomId(Long roomId) {
+        List<RoomUser> roomUserList = roomUserRepo.findByRoomId(roomId);
+        if(!roomUserList.isEmpty()){
+            return roomUserList.stream().map(roomUserConverter::entityToDto).collect(Collectors.toList());
+        } else {
+            throw new IllegalArgumentException("No roomUser found");
+        }
+    }
+
+    @Override
+    public List<RoomUserResponseDto> getRoomUserByUserId(Long userId) {
+        List<RoomUser> roomUserList = roomUserRepo.findByUserId(userId);
         if(!roomUserList.isEmpty()){
             return roomUserList.stream().map(roomUserConverter::entityToDto).collect(Collectors.toList());
         } else {

@@ -14,7 +14,7 @@ public interface UserService {
     UserResponseDto deleteUserStatusById(Long id);
 
     List<UserResponseDto> getAllActiveUsers();
-    UserResponseDto getUserByUserNameAndPassword(String username, String password) throws ChangeSetPersister.NotFoundException;
+    UserResponseDto getUserByUserNameAndPassword(String username, String password);
     UserResponseDto findUserByEmail(String email);
     UserResponseDto findUserByUserName(String userName);
 

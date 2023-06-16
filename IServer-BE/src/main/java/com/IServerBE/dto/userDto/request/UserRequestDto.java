@@ -16,8 +16,8 @@ import java.util.List;
 @Validated
 //enable method-level validation in addition to the default bean validation
 public class UserRequestDto {
-    @Nullable
-   private Long id;
+//    @Nullable
+//   private Long id;
     @NotNull
     @Pattern(regexp = "^[a-zA-Z0-9_]{3,20}$", message = "Invalid username with special characters")
     private String userName;

@@ -22,7 +22,6 @@ public class RoomUserConverter {
         roomUserResponseDto.setRoomResponseDto(roomResponseDto);
         UserResponseDto userResponseDto = userConverter.entityToDto(roomUser.getUser());
         roomUserResponseDto.setUserResponseDto(userResponseDto);
-        roomUserResponseDto.setUserResponseDto(userResponseDto);
         roomUserResponseDto.setRoomResponseDto(roomResponseDto);
         return roomUserResponseDto;
     }

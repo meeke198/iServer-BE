@@ -17,13 +17,13 @@ public class RoomConverter {
     public RoomResponseDto entityToDto(Room room) {
         RoomResponseDto roomResponseDto = new RoomResponseDto();
         BeanUtils.copyProperties(room, roomResponseDto);
-        List<RoomUserResponseDto> roomUserResponseDtoList = new ArrayList<>();
-        room.getRoomUserList().forEach(roomUser -> {
-            RoomUserResponseDto roomUserResponseDto = new RoomUserResponseDto();
-            BeanUtils.copyProperties(roomUser, roomUserResponseDto);
-            roomUserResponseDtoList.add(roomUserResponseDto);
-        });
-        roomResponseDto.setRoomUserResponseDtoList(roomUserResponseDtoList);
+//        List<RoomUserResponseDto> roomUserResponseDtoList = new ArrayList<>();
+//        room.getRoomUserList().forEach(roomUser -> {
+//            RoomUserResponseDto roomUserResponseDto = new RoomUserResponseDto();
+//            BeanUtils.copyProperties(roomUser, roomUserResponseDto);
+//            roomUserResponseDtoList.add(roomUserResponseDto);
+//        });
+//        roomResponseDto.setRoomUserResponseDtoList(roomUserResponseDtoList);
         return roomResponseDto;
     }
     public Room dtoToEntity(RoomRequestDto roomRequestDto) {

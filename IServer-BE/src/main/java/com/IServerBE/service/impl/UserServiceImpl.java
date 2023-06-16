@@ -15,6 +15,7 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -89,9 +90,13 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDto> getAllActiveUsers() {
         Optional<List<User>> userList = userRepo.findAllActiveUsers();
         if(userList.isPresent()){
-            List<UserResponseDto> userResponseDtoList = userConverter.entitiesToDtos(userList.get());
+            List<UserResponseDto> userResponseDtoList = new ArrayList<>();
+            userList.get().forEach(user -> {
+                UserResponseDto userResponseDto = userConverter.entityToDto(user);
+                userResponseDtoList.add(userResponseDto);
+            });
             return userResponseDtoList;
-        }else{
+        } else {
             throw new IllegalArgumentException("No users found");
         }
     }

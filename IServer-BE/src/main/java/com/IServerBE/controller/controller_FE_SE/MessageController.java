@@ -4,6 +4,7 @@ import com.IServerBE.converter.MessageConverter;
 import com.IServerBE.dto.messageDto.request.MessageRequestDto;
 import com.IServerBE.dto.messageDto.response.MessageResponseDto;
 import com.IServerBE.entity.Message;
+import com.IServerBE.service.MessageService;
 import com.IServerBE.service.impl.MessageServiceImpl;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.Optional;
 @CrossOrigin(value = "*", maxAge = 3600)
 @RequestMapping("/messages")
 public class MessageController {
-    private final MessageServiceImpl messageService;
+    private final MessageService messageService;
 
     @GetMapping("")
     public ResponseEntity<?> getAllMessages() {

@@ -1,6 +1,7 @@
 package com.IServerBE.service.impl;
 
 import com.IServerBE.converter.RoomConverter;
+import com.IServerBE.dto.roomDto.RoomRequestDto;
 import com.IServerBE.dto.roomDto.RoomResponseDto;
 import com.IServerBE.entity.Room;
 import com.IServerBE.repository.RoomRepo;
@@ -24,8 +25,11 @@ public class RoomServiceImpl implements RoomService {
 
 
     @Override
-    public RoomResponseDto saveRoom(Room room) {
-        return roomConverter.entityToDto(roomRepo.save(room));
+    public RoomResponseDto saveRoom(RoomRequestDto roomRequestDto) {
+        Room room = roomConverter.dtoToEntity(roomRequestDto);
+        roomRepo.save(room);
+        log.info("Saving room to database");
+        return roomConverter.entityToDto(room);
     }
 
     @Override
@@ -53,9 +57,26 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomResponseDto> getAllRooms() {
         Optional<List<Room>> roomList = Optional.of(roomRepo.findAll());
         if(roomList.isPresent()){
-            List<RoomResponseDto> roomResponseDtoList = roomConverter.entitiesToDto(roomList.get());
+            List<RoomResponseDto> roomResponseDtoList = new ArrayList<>();
+            roomList.get().forEach(room -> {
+                RoomResponseDto roomResponseDto = roomConverter.entityToDto(room);
+                roomResponseDtoList.add(roomResponseDto);
+            });
             return roomResponseDtoList;
         }else{
+            throw new IllegalArgumentException("No rooms found");
+        }
+    }
+
+    @Override
+    public RoomResponseDto updateRoom(RoomRequestDto roomRequestDto, Long id) {
+        Optional<Room> room = roomRepo.findById(id);
+        if(room.isPresent()){
+            room.get().setName(roomRequestDto.getName());
+            roomRepo.save(room.get());
+            RoomResponseDto roomResponseDto = roomConverter.entityToDto(room.get());
+            return roomResponseDto;
+        }else {
             throw new IllegalArgumentException("No rooms found");
         }
     }

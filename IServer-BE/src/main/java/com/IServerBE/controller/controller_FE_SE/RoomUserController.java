@@ -5,6 +5,7 @@ import com.IServerBE.dto.messageDto.response.MessageResponseDto;
 import com.IServerBE.dto.roomUserDto.request.RoomUserRequestDto;
 import com.IServerBE.dto.roomUserDto.response.RoomUserResponseDto;
 import com.IServerBE.entity.RoomUser;
+import com.IServerBE.service.RoomUserService;
 import com.IServerBE.service.impl.RoomUserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,9 +17,9 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(value = "*", maxAge = 3600)
-@RequestMapping("/room_users")
+@RequestMapping("/roomUsers")
 public class RoomUserController {
-    private final RoomUserServiceImpl roomUserService;
+    private final RoomUserService roomUserService;
     @GetMapping("")
     public ResponseEntity<?> getAllRoomUsers() {
         List<RoomUserResponseDto> roomUserResponseDtoList = roomUserService.getAllRoomUsers();
@@ -28,7 +29,25 @@ public class RoomUserController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/roomId/{roomId}")
+    public ResponseEntity<?> getRoomUserByRoomId(@PathVariable Long roomId) {
+        List <RoomUserResponseDto> roomUserResponseDto = roomUserService.getRoomUserByRoomId(roomId);
+        if (!roomUserResponseDto.isEmpty()) {
+            return ResponseEntity.ok().body(roomUserResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
+    @GetMapping("/userId/{userId}")
+    public ResponseEntity<?> getRoomUserByUserId(@PathVariable Long userId) {
+        List <RoomUserResponseDto> roomUserResponseDto = roomUserService.getRoomUserByUserId(userId);
+        if (!roomUserResponseDto.isEmpty()) {
+            return ResponseEntity.ok().body(roomUserResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> getRoomUserById(@PathVariable Long id) {
         Optional<RoomUserResponseDto> roomUserResponseDto = Optional.of(roomUserService.getRoomUserById(id));

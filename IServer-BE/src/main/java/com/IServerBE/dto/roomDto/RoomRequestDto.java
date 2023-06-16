@@ -16,8 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 @Validated
 public class RoomRequestDto {
-    @Nullable
-    private Long id;
+//    @Nullable
+//    private Long id;
     @Nullable
     private String name;
 //    @Nullable

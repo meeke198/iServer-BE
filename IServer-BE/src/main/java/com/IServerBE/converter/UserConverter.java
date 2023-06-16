@@ -17,20 +17,20 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class UserConverter {
-    private final RoomUserConverter roomUserConverter;
+//    private final RoomUserConverter roomUserConverter;
     public UserResponseDto entityToDto(User user){
         UserResponseDto userResponseDto = new UserResponseDto();
         BeanUtils.copyProperties(user, userResponseDto);
-        List<RoomUserResponseDto> roomUserResponseDtoList = new ArrayList<>();
-        user.getRoomUserList().forEach(roomUser -> {
-            RoomUserResponseDto roomUserResponseDto = new RoomUserResponseDto();
-            BeanUtils.copyProperties(roomUser, roomUserResponseDto);
-            roomUserResponseDtoList.add(roomUserResponseDto);
-        });
+//        List<RoomUserResponseDto> roomUserResponseDtoList = new ArrayList<>();
+//        user.getRoomUserList().forEach(roomUser -> {
+//            RoomUserResponseDto roomUserResponseDto = new RoomUserResponseDto();
+//            BeanUtils.copyProperties(roomUser, roomUserResponseDto);
+//            roomUserResponseDtoList.add(roomUserResponseDto);
+//        });
 //        roomUserResponseDtoList.setRoomUserResponseDtoList(roomUsers.stream()
 //                .map(roomUserConverter::entityToDto).collect(Collectors.toList()));
 //        BeanUtils.copyProperties(user, userResponseDto);
-        userResponseDto.setRoomUserResponseDtoList(roomUserResponseDtoList);
+//        userResponseDto.setRoomUserResponseDtoList(roomUserResponseDtoList);
         return userResponseDto;
     }
 //    public List<UserResponseDto> entitiesToDtos(List<User> userList){

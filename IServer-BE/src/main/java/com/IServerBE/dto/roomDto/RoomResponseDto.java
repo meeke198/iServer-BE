@@ -23,7 +23,7 @@ public class RoomResponseDto {
 //    @Nullable
 //    private LocalDateTime createAt = LocalDateTime.now();
 //    @Nullable
-    private List<RoomUserResponseDto> RoomUserResponseDtoList;
-    @Nullable
-    private List<Message> messageList;
+//    private List<RoomUserResponseDto> RoomUserResponseDtoList;
+//    @Nullable
+//    private List<Message> messageList;
 }

@@ -19,5 +19,8 @@ public interface RoomUserService {
     void deleteRoomUserById(Long id);
 
     List<RoomUserResponseDto> getAllRoomUsers();
+    List<RoomUserResponseDto> getRoomUserByRoomId(Long roomId);
+    List<RoomUserResponseDto> getRoomUserByUserId(Long userId);
+
 
 }

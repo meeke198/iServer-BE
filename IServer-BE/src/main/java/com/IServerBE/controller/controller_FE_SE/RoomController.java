@@ -1,7 +1,10 @@
 package com.IServerBE.controller.controller_FE_SE;
 
+import com.IServerBE.dto.roomDto.RoomRequestDto;
 import com.IServerBE.dto.roomDto.RoomResponseDto;
+import com.IServerBE.dto.userDto.response.UserResponseDto;
 import com.IServerBE.entity.Room;
+import com.IServerBE.service.RoomService;
 import com.IServerBE.service.impl.RoomServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +19,7 @@ import java.util.Optional;
 @CrossOrigin(value = "*", maxAge = 3600)
 @RequestMapping("/rooms")
 public class RoomController {
-    private final RoomServiceImpl roomService;
+    private final RoomService roomService;
     @GetMapping("/{id}")
     public ResponseEntity<?> getRoom(@PathVariable Long id){
         Optional<RoomResponseDto> roomResponseDto = Optional.of(roomService.getRoom(id));
@@ -29,8 +32,8 @@ public class RoomController {
 
     @GetMapping("")
     public ResponseEntity<?> getAllRooms(){
-        Optional<List<RoomResponseDto>> roomResponseDtoList = Optional.of(roomService.getAllRooms());
-        if(roomResponseDtoList.isPresent()){
+        List<RoomResponseDto> roomResponseDtoList = roomService.getAllRooms();
+        if(roomResponseDtoList != null){
             return ResponseEntity.ok().body(roomResponseDtoList);
         }else{
             return new ResponseEntity<>("No room exists", HttpStatus.BAD_REQUEST);
@@ -38,11 +41,20 @@ public class RoomController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> saveRoom(@RequestBody Room room){
-        RoomResponseDto roomResponseDto = roomService.saveRoom(room);
+    public ResponseEntity<?> saveRoom(@RequestBody RoomRequestDto roomRequestDto){
+        RoomResponseDto roomResponseDto = roomService.saveRoom(roomRequestDto);
         return ResponseEntity.ok().body(roomResponseDto);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editRoom(@RequestBody RoomRequestDto roomRequestDto, @PathVariable Long id){
+        Optional<RoomResponseDto> searchRoom = Optional.of(roomService.getRoom(id));
+        if (searchRoom.isPresent()) {
+           RoomResponseDto roomResponseDto = roomService.updateRoom(roomRequestDto, id);
+            return ResponseEntity.ok().body(roomResponseDto);
+        }
+        return new ResponseEntity<>("NOT FOUND", HttpStatus.NOT_FOUND);
+    }
     @DeleteMapping("/{id}")
     public void deleteRoom(@PathVariable Long id){
         roomService.deleteRoomById(id);
