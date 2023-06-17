@@ -3,6 +3,7 @@ package com.IServerBE.controller.controller_FE_SE;
 import com.IServerBE.converter.MessageConverter;
 import com.IServerBE.dto.messageDto.request.MessageRequestDto;
 import com.IServerBE.dto.messageDto.response.MessageResponseDto;
+import com.IServerBE.dto.userDto.response.UserResponseDto;
 import com.IServerBE.entity.Message;
 import com.IServerBE.service.MessageService;
 import com.IServerBE.service.impl.MessageServiceImpl;
@@ -56,12 +57,8 @@ public class MessageController {
 
     @PostMapping("")
     public ResponseEntity<?> saveMessage(@RequestBody MessageRequestDto messageRequestDto) {
-        Optional<MessageResponseDto> messageResponseDto = Optional.of(messageService.saveMessage(messageRequestDto));
-        if (messageResponseDto.isPresent()) {
-            return ResponseEntity.ok().body(messageResponseDto);
-        } else {
-            return new ResponseEntity<>("Couldn't save message", HttpStatus.BAD_REQUEST);
-        }
+       MessageResponseDto messageResponseDto = messageService.saveMessage(messageRequestDto);
+        return ResponseEntity.ok().body(messageResponseDto);
     }
 }
 

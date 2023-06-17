@@ -23,7 +23,8 @@ public class MessageServiceImpl implements MessageService {
     private final MessageConverter messageConverter;
     @Override
     public MessageResponseDto saveMessage(MessageRequestDto messageRequestDto) {
-        Message message = messageRepo.save(messageConverter.dtoToEntity(messageRequestDto));
+        Message message = messageConverter.dtoToEntity(messageRequestDto);
+        messageRepo.save(message);
         return messageConverter.entityToDto(message);
     }
 

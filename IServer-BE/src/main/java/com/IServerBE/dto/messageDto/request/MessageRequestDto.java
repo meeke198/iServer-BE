@@ -1,5 +1,7 @@
 package com.IServerBE.dto.messageDto.request;
 
+import com.IServerBE.dto.roomDto.RoomRequestDto;
+import com.IServerBE.dto.userDto.request.UserRequestDto;
 import com.IServerBE.entity.Room;
 import com.IServerBE.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,10 +22,8 @@ import java.time.LocalDateTime;
 @Validated
 public class MessageRequestDto {
     private String content;
-//    @Nullable
-    private Room room;
-    @Nullable
-    private User user;
+    private RoomRequestDto roomRequestDto;
+    private UserRequestDto userRequestDto;
     private LocalDateTime sentAt = LocalDateTime.now();
 
 }
