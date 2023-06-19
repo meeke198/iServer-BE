@@ -22,8 +22,8 @@ public class RoomRequestDto {
     private String name;
 //    @Nullable
 //    private LocalDateTime createAt = LocalDateTime.now();
-    @Nullable
-    private List<RoomUser> RoomUserList;
-    @Nullable
-    private List<Message> messageList;
+//    @Nullable
+//    private List<RoomUser> RoomUserList;
+//    @Nullable
+//    private List<Message> messageList;
 }

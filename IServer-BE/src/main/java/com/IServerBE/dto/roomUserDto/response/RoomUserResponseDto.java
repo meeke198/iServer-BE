@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomUserResponseDto {
-    private String name;
+//    private String name;
     private UserResponseDto userResponseDto;
     private RoomResponseDto roomResponseDto;
 

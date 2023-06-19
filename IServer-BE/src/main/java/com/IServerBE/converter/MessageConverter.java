@@ -23,9 +23,9 @@ public class MessageConverter {
         MessageResponseDto messageResponseDto = new MessageResponseDto();
         BeanUtils.copyProperties(message, messageResponseDto);
         UserResponseDto userResponseDto = userConverter.entityToDto(message.getUser());
-        messageResponseDto.setUserResponseDto(userResponseDto);
+        messageResponseDto.setUserId(userResponseDto.getId());
         RoomResponseDto roomResponseDto = roomConverter.entityToDto(message.getRoom());
-        messageResponseDto.setRoomResponseDto(roomResponseDto);
+        messageResponseDto.setRoomId(roomResponseDto.getId());
         return messageResponseDto;
     }
 

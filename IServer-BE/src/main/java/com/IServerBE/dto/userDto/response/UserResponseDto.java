@@ -15,7 +15,7 @@ public class UserResponseDto {
     private String email;
     private String avatar;
     private String password;
-    private Boolean isOnline = false;
-    private Boolean isActive = true;
+    private Boolean isOnline;
+    private Boolean isActive;
 //    private List<RoomUserResponseDto> roomUserResponseDtoList;
 }

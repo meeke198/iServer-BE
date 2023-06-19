@@ -22,8 +22,8 @@ import java.time.LocalDateTime;
 @Validated
 public class MessageRequestDto {
     private String content;
-    private RoomRequestDto roomRequestDto;
-    private UserRequestDto userRequestDto;
+    private Long roomId;
+    private Long userId;
     private LocalDateTime sentAt = LocalDateTime.now();
 
 }

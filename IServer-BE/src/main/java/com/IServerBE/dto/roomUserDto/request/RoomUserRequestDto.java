@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomUserRequestDto {
-    private String name;
+//    private String name;
     private RoomRequestDto roomRequestDto;
     private UserRequestDto userRequestDto;
 }

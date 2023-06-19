@@ -41,7 +41,7 @@ public class User {
     private List<RoomUser> RoomUserList;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Message> messageSents;
+    private List<Message> messageList;
 }
 //
 
