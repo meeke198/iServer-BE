@@ -18,10 +18,10 @@ import java.util.List;
 public class UserRequestDto {
 //    @Nullable
 //   private Long id;
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9_]{3,20}$", message = "Invalid username with special characters")
+//    @NotNull
+//    @Pattern(regexp = "^[a-zA-Z0-9_]{3,20}$", message = "Invalid username with special characters")
     private String userName;
-    @NotNull
+//    @NotNull
 //    @Email
     //    The regexp attribute specifies the regex pattern to validate the username.
 //    @Pattern(regexp ="^[A-Za-z0-9_.-]+@[A-Za-z0-9.-]+${8,}$", message = "Invalid email with special characters")

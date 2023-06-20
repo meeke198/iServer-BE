@@ -26,15 +26,11 @@ public class RoomConverter {
 //        roomResponseDto.setRoomUserResponseDtoList(roomUserResponseDtoList);
         return roomResponseDto;
     }
+
     public Room dtoToEntity(RoomRequestDto roomRequestDto) {
         Room room = new Room();
         BeanUtils.copyProperties(roomRequestDto, room);
         return room;
     }
 
-//    public List<RoomResponseDto> entitiesToDto(List<Room> roomList){
-//        List<RoomResponseDto> roomResponseDtoList = new ArrayList<>();
-//        roomList.forEach(room -> roomResponseDtoList.add(entityToDto(room)));
-//     return roomResponseDtoList;
-//    }
 }
