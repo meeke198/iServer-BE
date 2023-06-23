@@ -23,7 +23,6 @@ public class RoomServiceImpl implements RoomService {
     private final RoomRepo roomRepo;
     private final RoomConverter roomConverter;
 
-
     @Override
     public RoomResponseDto saveRoom(RoomRequestDto roomRequestDto) {
         Room room = roomConverter.dtoToEntity(roomRequestDto);

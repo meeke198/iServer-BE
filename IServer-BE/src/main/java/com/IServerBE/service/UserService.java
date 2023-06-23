@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserService {
 
     UserResponseDto saveUser(UserRequestDto userRequestDto);
+//    UserResponseDto editUser(UserRequestDto userRequestDto);
+
     UserResponseDto findUserById(Long id);
 
     UserResponseDto deleteUserStatusById(Long id);
@@ -17,5 +19,6 @@ public interface UserService {
     UserResponseDto getUserByUserNameAndPassword(String username, String password);
     UserResponseDto findUserByEmail(String email);
     UserResponseDto findUserByUserName(String userName);
+
 
 }

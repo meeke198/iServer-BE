@@ -16,14 +16,9 @@ import java.util.List;
 @NoArgsConstructor
 @Validated
 public class RoomRequestDto {
-//    @Nullable
-//    private Long id;
+    @Nullable
+    private Long id;
     @Nullable
     private String name;
-//    @Nullable
-//    private LocalDateTime createAt = LocalDateTime.now();
-//    @Nullable
-//    private List<RoomUser> RoomUserList;
-//    @Nullable
-//    private List<Message> messageList;
+
 }

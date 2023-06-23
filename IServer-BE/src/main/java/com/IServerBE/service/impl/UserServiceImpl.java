@@ -30,16 +30,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto saveUser(UserRequestDto userRequestDto) {
-//        Optional<User> user = userRepo.findUserByEmail(userRequestDto.getEmail());
-//        if(user.isPresent()){
             User currentUser = userConverter.dtoToEntity(userRequestDto);
             userRepo.save(currentUser);
             log.info("Saving new user to database {}", currentUser.getUserName());
             return userConverter.entityToDto(currentUser);
-//        } else {
-//            throw new IllegalArgumentException("User doesn't exist");
-//        }
+
     }
+
+//    @Override
+//    public UserResponseDto editUser(UserRequestDto userRequestDto) {
+//        User currentUser = userConverter.dtoToEntity(userRequestDto);
+//        userRepo.save(currentUser);
+//        log.info("Saving new user to database {}", currentUser.getUserName());
+//        return userConverter.entityToDto(currentUser);
+//    }
 
     @Override
     public UserResponseDto findUserById(Long id){
@@ -105,12 +109,10 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto getUserByUserNameAndPassword(String email, String password) {
         Optional<User> user = userRepo.findUserByUserNameAndPassword(email, password);
         if(user.isPresent()){
-//            User currentUser = user.orElseThrow(() -> new NotFoundException("User not found"));
-//            currentUser.setIsOnline(true);
             userRepo.save(user.get());
             return userConverter.entityToDto(user.get());
         } else{
-           return null;
+            throw new IllegalArgumentException("No users found");
         }
     }
 }
