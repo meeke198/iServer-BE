@@ -78,10 +78,11 @@ function Login(props) {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const result = await api.login(email, password);
-    console.log("result", result);
+    const currentUser = await api.login(email, password);
+    console.log("result", currentUser);
   };
 
+ 
   useEffect(() => {
     const checkAllowSubmit = () => {
       if (
